@@ -66,7 +66,15 @@ curl https://$APIGEE_HOST/lambda-javascript/somepathsuffix | jq
   "eventQueryString": ""
 }
 ```
+## Conclusion & Cleanup
 
+Congratulations! You've successfully created Apigee API to securely access ans AWS Lambda function.
+
+To clean up the artifacts created source your `env.sh` script and run the following to delete your sample CORS proxy:
+
+```bash
+./clean-lambda-javascript-v1.sh
+```
 # References
 ## AWS Lambda
 - [Getting Started with Lambda](https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html)
