@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations continueOnError="false" enabled="true" name="KV-lambda" mapIdentifier="lambda">
+    <Get assignTo="private.lambda_key">
+        <Key>
+            <Parameter>key</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="private.lambda_secret">
+        <Key>
+            <Parameter>secret</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="lambda_region">
+        <Key>
+            <Parameter>region</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="lambda_service">
+        <Key>
+            <Parameter>service</Parameter>
+        </Key>
+    </Get>
+    <Get assignTo="lambda_host">
+        <Key>
+            <Parameter>host</Parameter>
+        </Key>
+    </Get>
+    <Scope>environment</Scope>
+</KeyValueMapOperations>

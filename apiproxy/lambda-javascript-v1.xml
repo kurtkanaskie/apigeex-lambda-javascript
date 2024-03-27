@@ -1,0 +1,22 @@
+<APIProxy revision="29" name="lambda-javascript-v1">
+    <DisplayName></DisplayName>
+    <Description>This works works, lambda_signature needs to be lowercase</Description>
+    <CreatedAt>1711579170397</CreatedAt>
+    <LastModifiedAt>1711579170397</LastModifiedAt>
+    <BasePaths>/lambda-javascript</BasePaths>
+    <Policies>
+        <Policy>KV-lambda</Policy>
+        <Policy>JS-lambda</Policy>
+        <Policy>AM-prepare-request</Policy>
+        <Policy>AM-sign-request</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources>
+        <Resource>jsc://JS-lambda.js</Resource>
+    </Resources>
+    <TargetEndpoints>
+        <TargetEndpoint>default</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

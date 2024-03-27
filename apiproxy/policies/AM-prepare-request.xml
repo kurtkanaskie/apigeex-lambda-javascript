@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage continueOnError="false" enabled="true" name="AM-prepare-request">
+    <!-- date for JS, easier here -->
+    <AssignVariable>
+        <Name>amzDate</Name>
+        <Template>{timeFormatMs('yyyyMMdd',system.timestamp)}</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>amzDatetime</Name>
+        <Template>{timeFormatMs('yyyyMMdd',system.timestamp)}T{timeFormatMs('HHmmss',system.timestamp)}Z</Template>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>algorithm</Name>
+        <Value>AWS4-HMAC-SHA256</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>requestType</Name>
+        <Value>aws4_request</Value>
+    </AssignVariable>
+    <!--Ensure trailing slash if no pathsuffix - this should work -->
+    <!--A bit of a hack in JS to set requestPathsuffix and Set agains in AM-sign-request -->
+    <AssignVariable>
+        <Name>requestPathsuffixBug</Name>
+        <Value>/</Value>
+        <Ref>proxy.pathsuffix</Ref>
+    </AssignVariable>
+    <Set>
+        <Headers>
+            <Header name="host">{lambda_host}</Header>
+            <Header name="x-amz-date">{amzDatetime}</Header>
+        </Headers>
+        <Path>{proxy.pathsuffix}</Path>
+    </Set>
+    <Copy>
+        <Headers>
+            <Header name="accept"/>
+            <Header name="content-type"/>
+        </Headers>
+        <Verb>true</Verb>
+        <Content>true</Content>
+    </Copy>
+    <AssignTo createNew="true" transport="http" type="request"/>
+</AssignMessage>
