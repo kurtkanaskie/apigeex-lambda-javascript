@@ -19,6 +19,7 @@ var path = context.getVariable('proxy.pathsuffix');
 if( path === '' ) {
     path = '/';
 }
+var queryParams = context.getVariable("request.querystring");
 const body = context.getVariable('request.content');
 
 // Create array, convert to lowercase and sort
@@ -38,10 +39,6 @@ function stringToSign() {
   parts.push(credentialString());
   parts.push(hexEncodedHash(canonicalString()));
   return parts.join('\n');
-}
-
-function canonicalQueryParams() {
-    return '';
 }
 
 // https://docs.aws.amazon.com/general/latest/gr/sigv4-create-canonical-request.html
@@ -70,6 +67,18 @@ function canonicalHeaders() {
 
 function canonicalHeaderValues(values) {
   return values.replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+}
+
+function canonicalQueryParams() {
+    // Expects params to be properly URL encoded, just sort them and re-join
+    return queryParams === '' ? '' : queryParams.split('&').sort().join('&');
+
+    // Does this properly handle both unencoded and encoded?
+    // decode an unencoded param (e.g. "What the") results in "What the" then gets encoded to "What%20the"
+    // decode an encoded param (e.g. "What%20the") restules in "What the" then gets encoded to "What%20the"
+    // Is there any value in doing this? curl already encodes the params, perhaps if a client doesn't do that
+    // This seems to work during testing locally, but causes bad signature
+    // return queryParams === '' ? '' : encodeURI(decodeURI(queryParams.split('&').sort().join('&')));
 }
 
 function signedHeaders() {
@@ -112,6 +121,11 @@ if (key.toLowerCase().indexOf('x-amz-') === 0) return true;
     return unsignableHeaders.indexOf(key) < 0;
 }
 
+// Debug
+// print("canonicalHeaders: " + canonicalHeaders());
+// print("canonicalQueryParams: " + canonicalQueryParams());
+// print("canonicalString: " + canonicalString());
+// End Debug
 context.setVariable("requestPathsuffix", path);
 context.setVariable("credentialString", credentialString());
 context.setVariable("signedHeaders", signedHeaders());

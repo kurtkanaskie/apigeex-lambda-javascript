@@ -45,26 +45,41 @@ deploy-lambda-javascript-v1.sh
 ```
 Test the proxy
 ```
-curl https://$APIGEE_HOST/lambda-javascript | jq
+curl -s https://$APIGEE_HOST/lambda-javascript | jq
 {
   "message": "Hello Kurt from Lambda hello-app",
   "eventPath": "/",
   "eventQueryString": ""
 }
 
-curl https://$APIGEE_HOST/lambda-javascript/ | jq
+curl -s https://$APIGEE_HOST/lambda-javascript/ | jq
 {
   "message": "Hello Kurt from Lambda hello-app",
   "eventPath": "/",
   "eventQueryString": ""
 }
 
-curl https://$APIGEE_HOST/lambda-javascript/somepathsuffix | jq
+curl -s https://$APIGEE_HOST/lambda-javascript/somepathsuffix | jq
 {
   "message": "Hello Kurt from Lambda hello-app",
   "eventPath": "/somepathsuffix",
   "eventQueryString": ""
 }
+
+curl -s https://$APIGEE_HOST/'lambda-javascript/somepathsuffix?hello=sunshine&goodbye=rain' | jq
+{
+  "message": "Hello Kurt from Lambda hello-app",
+  "eventPath": "/somepathsuffix",
+  "eventQueryString": "hello=sunshine&goodbye=rain"
+}
+
+curl -s https://$APIGEE_HOST/'lambda-javascript/prompt?question=What%20is%20the%20meaning%20of%20life%3F' | jq
+{
+  "message": "Hello Kurt from Lambda hello-app",
+  "eventPath": "/prompt",
+  "eventQueryString": "question=What%20is%20the%20meaning%20of%20life%3F"
+}
+
 ```
 ## Conclusion & Cleanup
 
@@ -87,5 +102,4 @@ To clean up the artifacts created source your `env.sh` script and run the follow
 - [apigeecli](https://github.com/apigee/apigeecli)
 
 ## TODO
-- Include query params in canonical message string
 - Include body in canonical string

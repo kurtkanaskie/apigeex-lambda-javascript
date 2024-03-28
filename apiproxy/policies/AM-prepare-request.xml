@@ -29,6 +29,7 @@
             <Header name="host">{lambda_host}</Header>
             <Header name="x-amz-date">{amzDatetime}</Header>
         </Headers>
+        <!--A bit of a hack - send value to JS - if its "" JS sets to "/" and sets requestPathsuffix for AM-sign-request -->
         <Path>{proxy.pathsuffix}</Path>
     </Set>
     <Copy>
@@ -36,6 +37,7 @@
             <Header name="accept"/>
             <Header name="content-type"/>
         </Headers>
+        <QueryParams/>
         <Verb>true</Verb>
         <Content>true</Content>
     </Copy>

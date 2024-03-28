@@ -11,10 +11,6 @@
             <Step>
                 <Name>KV-lambda</Name>
             </Step>
-            <!--<Step>-->
-            <!--    <Condition>proxy.pathsuffix = ""</Condition>-->
-            <!--    <Name>AM-add-slash-to-pathsuffix</Name>-->
-            <!--</Step>-->
             <Step>
                 <Name>AM-prepare-request</Name>
             </Step>

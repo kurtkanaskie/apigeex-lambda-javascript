@@ -37,7 +37,7 @@
         <Headers>
             <Header name="authorization">{algorithm} Credential={private.lambda_key}/{credentialString}, SignedHeaders={signedHeaders}, Signature={toLowerCase(lambda_signature)}</Header>
         </Headers>
-        <!--A bit of a hack-->
+        <!--A bit of a hack - set by JS to ensure no path becomes "/" -->
         <Path>{requestPathsuffix}</Path>
     </Set>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
