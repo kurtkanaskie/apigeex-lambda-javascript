@@ -104,7 +104,7 @@ function hexEncodedHash(string) {
 
 // not supported here - only for gets for now
 function hexEncodedBodyHash() {
-  return hexEncodedHash('');
+  return hexEncodedHash(body);
 }
 
 unsignableHeaders = [

@@ -1,15 +1,14 @@
-<APIProxy revision="8" name="lambda-javascript-v1">
+<APIProxy revision="26" name="lambda-javascript-v1">
     <DisplayName></DisplayName>
-    <Description>This works works, lambda_signature needs to be lowercase, expects query params to be properly URL encoded</Description>
-    <CreatedAt>1711645147754</CreatedAt>
-    <LastModifiedAt>1711645348521</LastModifiedAt>
+    <Description>This works works, lambda_signature needs to be lowercase, expects query params to be properly URL encoded, now with body</Description>
+    <CreatedAt>1711657783606</CreatedAt>
+    <LastModifiedAt>1711657783606</LastModifiedAt>
     <BasePaths>/lambda-javascript</BasePaths>
     <Policies>
         <Policy>AM-prepare-request</Policy>
         <Policy>AM-sign-request</Policy>
         <Policy>JS-lambda</Policy>
         <Policy>KV-lambda</Policy>
-        <Policy>AM-debug</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>

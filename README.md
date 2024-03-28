@@ -79,7 +79,6 @@ curl -s https://$APIGEE_HOST/'lambda-javascript/prompt?question=What%20is%20the%
   "eventPath": "/prompt",
   "eventQueryString": "question=What%20is%20the%20meaning%20of%20life%3F"
 }
-
 ```
 ## Conclusion & Cleanup
 
