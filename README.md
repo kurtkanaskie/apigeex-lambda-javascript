@@ -79,6 +79,30 @@ curl -s https://$APIGEE_HOST/'lambda-javascript/prompt?question=What%20is%20the%
   "eventPath": "/prompt",
   "eventQueryString": "question=What%20is%20the%20meaning%20of%20life%3F"
 }
+
+curl --location --request POST https://$APIGEE_HOST/'lambda-javascript/prompts?prompt=What%20is%20the%20meaning%20of%20life' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "prompt":"What is the meaning of life?",
+    "options": {
+        "detailLevel":"HIGH",
+        "errorTolerance":"LOW",
+        "mode":"SYNCHRONOUS"
+    }
+}'
+{
+  "message": "Hello Kurt from Lambda hello-app",
+  "eventPath": "/prompts",
+  "eventQueryStringDecoded": "prompt=What is the meaning of life",
+  "eventBody": {
+    "prompt": "What is the meaning of life?",
+    "options": {
+      "detailLevel": "HIGH",
+      "errorTolerance": "LOW",
+      "mode": "SYNCHRONOUS"
+    }
+  }
+}
 ```
 ## Conclusion & Cleanup
 
