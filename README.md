@@ -1,11 +1,11 @@
 # Apigee X Lambda JavaScript Sample
 This sample lets you create an API that can create a signed request (AWS4-HMAC-SHA256) to securely access an AWS Lambda function.
 
-It uses a 
-- KVM to store the AWS Lambda function key and secret, and other configuration information (e.g. region, host)
-- an Assign Message policy to prepare the request
-- a JavaScript policy to create the canonical values for the signature
-- an Assign Message policy to create the HMAC keys and signature
+It uses:
+- A KVM to store the AWS Lambda function key and secret, and other configuration information (e.g. region, host),
+- an Assign Message policy to prepare the request,
+- a JavaScript policy to create the canonical values for the signature,
+- and an Assign Message policy to create the HMAC keys and signature using HMAC calculation functions.
 
 ## Disclaimer
 
@@ -19,9 +19,9 @@ See the [LICENSE](LICENSE) file included.
 This code is open source.
 
 ## Prerequisites
-1 Existing AWS Lambda function
-2 Apigee X
-3 Apigeecli
+1. Existing AWS Lambda function
+2. Apigee X
+3. Apigeecli
 
 ## Setup Instructions
 1. Clone the respository
