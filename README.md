@@ -38,6 +38,31 @@ This code is open source.
     source env.sh
     ```
 
+## Sample Lambda function
+hello-app/index.mjs
+```
+export const handler = async (event) => {
+  // TODO implement
+  const body = {
+    message:'Hello Kurt from Lambda hello-app',
+    eventPath:event.rawPath
+    // ,eventTotal:event
+  };
+  
+  if( event.rawQueryString ) {
+    body.queryString = decodeURI(event.rawQueryString);
+  }
+  if( event.body ) {
+    body.content = JSON.parse(event.body);
+  }
+  
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify(body),
+  };
+  return response;
+};
+```
 ## Deploy Apigee components
 Next, let's deploy our lambda-javascript-v1 proxy. 
 ```
